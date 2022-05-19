@@ -1,0 +1,15 @@
+<html>
+<script type="text/javascript">
+    //const routedict={
+    //    "test": "test" 
+    //}
+
+    params =new URL(window.location.href).searchParams;
+    p=params.get("p");
+    console.log(p);
+    url="./"+p//routedict[p];
+    console.log(url)
+
+    window.location.replace(url);
+</script>
+</html>
