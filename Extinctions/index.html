@@ -1,13 +1,18 @@
 <html>
 <script type="text/javascript">
-    //const routedict={
-    //    "test": "test" 
-    //}
+    const routedict={
+        AA: "AA",
+        test: "test", 
+    }
 
     params =new URL(window.location.href).searchParams;
     p=params.get("p");
     console.log(p);
-    url="./"+p//routedict[p];
+    if (p in routedict){
+        url="./"+routedict[p];
+    }else{
+        url="./404";
+    }
     console.log(url)
 
     window.location.replace(url);
