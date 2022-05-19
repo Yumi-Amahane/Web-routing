@@ -1,20 +1,23 @@
 <html>
 <script type="text/javascript">
+
     const routedict={
+        index: "index",
         AA: "AA",
         test: "test", 
     }
+    //ルーティング用辞書
 
     params =new URL(window.location.href).searchParams;
-    p=params.get("p");
-    console.log(p);
+    p=params.get("p");//GETで変数pの取得
+    //console.log(p);
     if (p in routedict){
         url="./"+routedict[p];
     }else{
         url="./404";
     }
-    console.log(url)
+    //console.log(url)
 
-    window.location.replace(url);
+    window.location.replace(url);//URL遷移
 </script>
 </html>

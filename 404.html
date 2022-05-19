@@ -1,19 +1,24 @@
 <html>
     <head><title>ルーティング中</title></head>
 <script>
-    const loc=window.location;
+    //これはルーティング用の404ファイル。
+    //ルートディレクトリがルーティング用の物置になっている
+    //イメージとしてはこの次の階層にルートが出てくるイメージ
+    const loc=window.location;//現在位置URL
     const origin=loc.origin;
-    console.log(origin)
-    const path = loc.href.substr(origin.length + 1);
-    const segments=path.split("/");
+    //console.log(origin)
+
+    const segments=loc.href.substr(origin.length + 1).split("/");
+    //origin以降のパスの取得
 
     const SEGMENT_COUNT=2;
-    const repo= segments.slice(0, SEGMENT_COUNT).join('/');
-    console.log(repo)
+    const repo= segments.slice(0, SEGMENT_COUNT).join('/');//ディレクトリ名になる
+    //console.log(repo);
     const param = segments.slice(SEGMENT_COUNT).join('/');
-    const url=origin+"/"+repo+"/"+"?p="+param;
 
-    console.log(url)
+    const url=origin+"/"+repo+"/route"+"?p="+param;
+    //次階層のroute用ページに飛ぶ
+    //console.log(url)
     loc.replace(url)
 </script>
 </html>
