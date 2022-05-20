@@ -1,17 +1,18 @@
 <html>
     <head><title>ルーティング中</title></head>
 
-    <body>ここは、ルーティングに渡すのための404ページ<br>
+    <body><!--ルーティング中の画面をカスタムできるぞ!-->
+        ここは、ルーティングに渡すのための404ページ<br>
     </body>
 
 <script type="text/javascript">
     //これはルーティング用の404ファイル。
-    //ルートディレクトリがルーティング用の物置になっている
-    //イメージとしてはこの次の階層にルートが出てくるイメージ
+    //ルートディレクトリがルーティング用に使うスクリプト置き場になっている
+    //イメージとしてはこの次の階層が本来のWebページのルートであるのイメージ
     var params =new URL(window.location.href).searchParams;
     var route=params.get("route");//GETで変数routeの取得
-    //もしルーティングされたうえでNotFoundの時は404ページの表示
-    //console.log(p);
+    //これはルートしているかの判定であり、無限にルーティングしてしまうのを防いでいる
+    //（1回ルーティングしたならばもうルーティングしない）
 
     const loc=window.location;//現在位置URL
     const origin=loc.origin;
@@ -28,7 +29,7 @@
         //console.log(url)
         loc.replace(url)
     }
-    else{//むしろそのまま404に飛ばす方が楽まであるかも
+    else{//もし無限ルーティングがおこる（ディレクトリ名が間違っている場合）はデフォルトのディレクトリの404に飛ぶ
         const repositoryName= segments.slice(0, SEGMENT_COUNT-1).join('/');//ディレクトリ名になる
         const dire="Extinctions";//ここは各々の遷移したいindexが有るファイル名にするべし
         //console.log(origin);
