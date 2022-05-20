@@ -1,5 +1,9 @@
 <html>
-    <head><title id="TITLE">ルーティング中</title></head>
+    <head><title>ルーティング中</title></head>
+
+    <body>ここは、ルーティングに渡すのための404ページ<br>
+    </body>
+
 <script type="text/javascript">
     //これはルーティング用の404ファイル。
     //ルートディレクトリがルーティング用の物置になっている
@@ -12,34 +16,27 @@
     const loc=window.location;//現在位置URL
     const origin=loc.origin;
     const SEGMENT_COUNT=2;
+    const segments=loc.href.substr(origin.length + 1).split("/");//origin以降のパスの取得
     //console.log(origin)
     if (route!="True"){
-        const segments=loc.href.substr(origin.length + 1).split("/");
-        //origin以降のパスの取得
-
-        const repo= segments.slice(0, SEGMENT_COUNT).join('/');//ディレクトリ名になる
-        //console.log(repo);
+        const repositoryName= segments.slice(0, SEGMENT_COUNT).join('/');//ディレクトリ名になる
+        //console.log(repositoryName);
         const param = segments.slice(SEGMENT_COUNT).join('/');
 
-        const url=origin+"/"+repo+"/route"+"?route=True&p="+param;
+        const url=origin+"/"+repositoryName+"/route"+"?route=True&p="+param;
         //次階層のroute用ページに飛ぶ
         //console.log(url)
         loc.replace(url)
     }
-
-    const repo= segments.slice(0, SEGMENT_COUNT-1).join('/');//ディレクトリ名になる
-    const dire="Extinctions";//ここは各々の遷移したいindexが有るファイル名にするべし
-    const url=origin+"/"+repo+"/"+dire+"/route"+"?route=True&p=";
-    document.getElementById("TITLE").innerHTML="404 Not Found!";
-</script>
-
-<body>ここは、404えらーでルーティングできなかった時のページ<br>
-<div id="backToTop"></div>
-</body>
-<script type="text/javascript">
-    console.log(url);
-    document.getElementById("backToTop").innerHTML
-        ="<a href="+url+">トップへ戻る</a>";
+    else{//むしろそのまま404に飛ばす方が楽まであるかも
+        const repositoryName= segments.slice(0, SEGMENT_COUNT-1).join('/');//ディレクトリ名になる
+        const dire="Extinctions";//ここは各々の遷移したいindexが有るファイル名にするべし
+        //console.log(origin);
+        //console.log(repositoryName);
+        const url=origin+"/"+repositoryName+"/"+dire+"/route"+"?route=True&p=404";
+        //console.log(url);
+        loc.replace(url)
+    }
     
 </script>
 </html>
