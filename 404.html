@@ -11,12 +11,12 @@
 
     const loc=window.location;//現在位置URL
     const origin=loc.origin;
+    const SEGMENT_COUNT=2;
     //console.log(origin)
     if (route!="True"){
         const segments=loc.href.substr(origin.length + 1).split("/");
         //origin以降のパスの取得
 
-        const SEGMENT_COUNT=2;
         const repo= segments.slice(0, SEGMENT_COUNT).join('/');//ディレクトリ名になる
         //console.log(repo);
         const param = segments.slice(SEGMENT_COUNT).join('/');
@@ -27,8 +27,9 @@
         loc.replace(url)
     }
 
-    const repo="Extinctions";//ここは各々の遷移したいindexが有るファイル名にするべし
-    const url=origin+"/"+repo+"/route"+"?route=True&p=";
+    const repo= segments.slice(0, SEGMENT_COUNT-1).join('/');//ディレクトリ名になる
+    const dire="Extinctions";//ここは各々の遷移したいindexが有るファイル名にするべし
+    const url=origin+"/"+repo+"/"+dire+"/route"+"?route=True&p=";
     document.getElementById("TITLE").innerHTML="404 Not Found!";
 </script>
 
