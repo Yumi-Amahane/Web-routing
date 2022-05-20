@@ -4,21 +4,28 @@
     //これはルーティング用の404ファイル。
     //ルートディレクトリがルーティング用の物置になっている
     //イメージとしてはこの次の階層にルートが出てくるイメージ
-    const loc=window.location;//現在位置URL
-    const origin=loc.origin;
-    //console.log(origin)
+    var params =new URL(window.location.href).searchParams;
+    var route=params.get("route");//GETで変数routeの取得
+    //もしルーティングされたうえでNotFoundの時は404ページの表示
+    //console.log(p);
 
-    const segments=loc.href.substr(origin.length + 1).split("/");
-    //origin以降のパスの取得
+    if (route!="True"){
+        const loc=window.location;//現在位置URL
+        const origin=loc.origin;
+        //console.log(origin)
 
-    const SEGMENT_COUNT=2;
-    const repo= segments.slice(0, SEGMENT_COUNT).join('/');//ディレクトリ名になる
-    //console.log(repo);
-    const param = segments.slice(SEGMENT_COUNT).join('/');
+        const segments=loc.href.substr(origin.length + 1).split("/");
+        //origin以降のパスの取得
 
-    const url=origin+"/"+repo+"/route"+"?p="+param;
-    //次階層のroute用ページに飛ぶ
-    //console.log(url)
-    loc.replace(url)
+        const SEGMENT_COUNT=2;
+        const repo= segments.slice(0, SEGMENT_COUNT).join('/');//ディレクトリ名になる
+        //console.log(repo);
+        const param = segments.slice(SEGMENT_COUNT).join('/');
+
+        const url=origin+"/"+repo+"/route"+"?route=True&p="+param;
+        //次階層のroute用ページに飛ぶ
+        //console.log(url)
+        loc.replace(url)
+    }
 </script>
 </html>
