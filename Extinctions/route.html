@@ -11,7 +11,9 @@
     params =new URL(window.location.href).searchParams;
     p=params.get("p");//GETで変数pの取得
     //console.log(p);
-    if (p in routedict){
+    if (p==""){
+        url="./";
+    }else if (p in routedict){
         url="./"+routedict[p];
     }else{
         url="./404";

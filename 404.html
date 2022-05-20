@@ -1,5 +1,5 @@
 <html>
-    <head><title>ルーティング中</title></head>
+    <head><title id="TITLE">ルーティング中</title></head>
 <script>
     //これはルーティング用の404ファイル。
     //ルートディレクトリがルーティング用の物置になっている
@@ -27,5 +27,10 @@
         //console.log(url)
         loc.replace(url)
     }
+    document.getElementById("TITLE").innerHTML="404 Not Found!";
 </script>
+
+<body>ここは、404えらーでルーティングできなかった時のページ<br>
+<a href="./Extinctions/route?p=">トップへ戻る</a>
+</body>
 </html>
