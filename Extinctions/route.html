@@ -1,12 +1,8 @@
 <html>
+<script type="text/javascript" src="./routedict.js"></script>
 <script type="text/javascript">
 
-    const routedict={
-        index: "index.html",
-        AA: "AA.html",
-        test: "AA.html", 
-    }
-    //ルーティング用辞書
+    console.log(routedict);
 
     params =new URL(window.location.href).searchParams;
     p=params.get("p");//GETで変数pの取得
