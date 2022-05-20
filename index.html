@@ -1,0 +1,24 @@
+<html>
+    <head><title>ルーティング中</title></head>
+
+<script type="text/javascript">
+    const loc=window.location;//現在位置URL
+    const origin=loc.origin;
+    const SEGMENT_COUNT=2;
+    const segments=loc.href.substr(origin.length + 1).split("/");//origin以降のパスの取得
+    const repositoryName= segments.slice(0, SEGMENT_COUNT-1).join('/');//ディレクトリ名になる
+    const dire="Extinctions";//ここは各々の遷移したいindexが有るファイル名にするべし
+
+    const url=origin+"/"+repositoryName+"/"+dire+"/route"+"?route=True&p=";
+    //console.log(origin);
+    //console.log(repositoryName);  
+    //console.log(url);
+    loc.replace(url)
+    
+</script>
+
+<body><!--ルーティング中の画面をカスタムできるぞ!-->
+    ここは、ルーティングに渡すのための404ページ<br>
+</body>
+
+</html>
